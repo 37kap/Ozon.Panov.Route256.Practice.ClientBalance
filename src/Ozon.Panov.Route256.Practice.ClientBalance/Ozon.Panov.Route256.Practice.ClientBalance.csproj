@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<IncludeHttpRuleProtos>true</IncludeHttpRuleProtos>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..</DockerfileContext>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentMigrator.Runner" Version="6.2.0" />
+		<PackageReference Include="FluentValidation" Version="11.11.0" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+		<PackageReference Include="Google.Api.CommonProtos" Version="2.16.0" GeneratePathProperty="true" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
+		<PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.67.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.70.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+		<PackageReference Include="Npgsql" Version="8.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="Infrastructure\Protos\client_balance.proto" Type="Server" AdditionalImportDirs="$(PkgGoogle_Api_CommonProtos)/content/protos" />
+	</ItemGroup>
+
+</Project>

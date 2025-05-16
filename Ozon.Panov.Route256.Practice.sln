@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{B80503B0-A9B7-438B-801E-8D72FF68F579}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3C513187-60D8-4380-8408-16FF646A00AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ozon.Panov.Route256.Practice.ClientBalance", "src\Ozon.Panov.Route256.Practice.ClientBalance\Ozon.Panov.Route256.Practice.ClientBalance.csproj", "{126BC91E-5868-400B-99C2-F2BCC93BF2DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ozon.Panov.Route256.Practice.ClientBalance.IntegrationTests", "tests\Ozon.Panov.Route256.Practice.ClientBalance.IntegrationTests\Ozon.Panov.Route256.Practice.ClientBalance.IntegrationTests.csproj", "{212F080C-E4ED-4DBE-930B-8F56E5CB0B9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{126BC91E-5868-400B-99C2-F2BCC93BF2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126BC91E-5868-400B-99C2-F2BCC93BF2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126BC91E-5868-400B-99C2-F2BCC93BF2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126BC91E-5868-400B-99C2-F2BCC93BF2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{212F080C-E4ED-4DBE-930B-8F56E5CB0B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{212F080C-E4ED-4DBE-930B-8F56E5CB0B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{212F080C-E4ED-4DBE-930B-8F56E5CB0B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{212F080C-E4ED-4DBE-930B-8F56E5CB0B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{126BC91E-5868-400B-99C2-F2BCC93BF2DC} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{212F080C-E4ED-4DBE-930B-8F56E5CB0B9B} = {3C513187-60D8-4380-8408-16FF646A00AD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E376AD8F-DCC2-4614-82FE-F8357DCF83FC}
+	EndGlobalSection
+EndGlobal

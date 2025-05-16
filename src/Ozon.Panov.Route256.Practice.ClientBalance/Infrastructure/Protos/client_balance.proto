@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package ozon.panov.route256.practice.proto.client_balance_grpc;
+option csharp_namespace = "Ozon.Panov.Route256.Practice.Proto.ClientBalanceGrpc";
+
+import "google/protobuf/timestamp.proto";
+
+service ClientBalanceGrpc {
+  rpc V1CreateClient (V1CreateClientRequest) returns (V1CreateClientResponse);
+  rpc V1TopUpClientBalance (V1TopUpClientBalanceRequest) returns (V1TopUpClientBalanceResponse);
+  rpc V1WithdrawClientBalance (V1WithdrawClientBalanceRequest) returns (V1WithdrawClientBalanceResponse);
+  rpc V1ChangeOperationStatus (V1ChangeOperationStatusRequest) returns (V1ChangeOperationStatusResponse);
+  rpc V1QueryClientBalance (V1QueryClientBalanceRequest) returns (V1QueryClientBalanceResponse);
+  rpc V1RemoveOutdatedOperations (V1RemoveOutdatedOperationsRequest) returns (V1RemoveOutdatedOperationsResponse);
+  rpc V1QueryOperationsHistory (V1QueryOperationsHistoryRequest) returns (stream V1QueryOperationsHistoryResponse);
+}
+
+message V1CreateClientRequest {
+  int64 client_id = 1;
+}
+
+message V1CreateClientResponse {
+  
+}
+
+message V1TopUpClientBalanceRequest {
+  string operation_id = 1;
+  int64 client_id = 2;
+  Money top_up_amount = 3;
+  google.protobuf.Timestamp operation_time = 4;
+}
+
+message V1TopUpClientBalanceResponse {
+  
+}
+
+message V1WithdrawClientBalanceRequest {
+  string operation_id = 1;
+  int64 client_id = 2;
+  Money withdraw_amount = 3;
+  google.protobuf.Timestamp operation_time = 4;
+}
+
+message V1WithdrawClientBalanceResponse {
+  bool withdraw_possible = 1;
+}
+
+message V1ChangeOperationStatusRequest {
+  string operation_id = 1;
+  OperationType operation_type = 2;
+  int64 client_id = 3;
+  ChangeOperationStatus operation_status = 4;
+  google.protobuf.Timestamp change_time = 5;
+}
+
+message V1ChangeOperationStatusResponse {
+  
+}
+
+message V1QueryClientBalanceRequest {
+  int64 client_id = 1;
+}
+
+message V1QueryClientBalanceResponse {
+  Money balance = 1;
+}
+
+message V1RemoveOutdatedOperationsRequest {
+  repeated Operation operations = 1;
+  
+  message Operation {
+    string operation_id = 1;
+    OperationType operation_type = 2;
+  }
+}
+
+message V1RemoveOutdatedOperationsResponse {
+  
+}
+
+message V1QueryOperationsHistoryRequest {
+  int64 client_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message V1QueryOperationsHistoryResponse {
+  string operation_id = 1;
+  OperationType operation_type = 2;
+  Money amount = 3;
+  OperationStatus operation_status = 4;
+  google.protobuf.Timestamp operation_time = 5;
+  int64 total_count = 6;
+}
+
+message Money {
+  int64 units = 1;
+  int32 nanos = 2;
+}
+
+enum OperationType {
+  OPERATION_TYPE_TOP_UP = 0;
+  OPERATION_TYPE_WITHDRAW = 1;
+}
+
+enum ChangeOperationStatus {
+  CHANGE_OPERATION_STATUS_CANCELLED = 0;
+  CHANGE_OPERATION_STATUS_COMPLETED = 1;
+}
+
+enum OperationStatus {
+  OPERATION_STATUS_PENDING = 0;
+  OPERATION_STATUS_CANCELLED = 1;
+  OPERATION_STATUS_COMPLETED = 2;
+  OPERATION_STATUS_REJECT = 4;
+}

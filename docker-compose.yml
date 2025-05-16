@@ -1,0 +1,36 @@
+volumes:
+  panov-k_client-balance-db:
+
+services:
+  client-balance-db:
+    image: postgres:latest
+    container_name: client-balance-db
+    ports:
+      - "5532:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: PasSwOrD1
+      POSTGRES_DB: client-balance-db
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - panov-k_client-balance-db:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d client-balance-db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  client-balance:
+    pull_policy: build
+    container_name: client-balance
+    build:
+      context: .
+      dockerfile: ./src/Ozon.Panov.Route256.Practice.ClientBalance/Dockerfile
+    image: client-balance:latest
+    depends_on:
+      client-balance-db:
+        condition: service_healthy
+    ports:
+      - "8111:5002"
+    environment:
+      ROUTE256_CLIENT_BALANCE_DB_CONNECTION_STRING: "Server=client-balance-db;Port=5432;User Id=user;Password=PasSwOrD1;Database=client-balance-db;"
